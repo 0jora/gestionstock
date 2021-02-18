@@ -19,5 +19,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::resource('clients','clientController');
+
 
 Route::resource('produit', 'ProduitController');

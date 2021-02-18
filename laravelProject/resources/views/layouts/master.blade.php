@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Starter</title>
+  <title>Gestion Stock</title>
   <!-- CSRF Token -->
  <meta name="csrf-token" content="{{ csrf_token() }}">
   <link rel="stylesheet" href="{{asset('css/app.css')}}">
@@ -20,7 +20,7 @@
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>A</b>LT</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Admin</b>LTE</span>
+      <span class="logo-lg"><b>Gestion</b>Stock</span>
     </a>
 
     <!-- Header Navbar -->
@@ -30,7 +30,7 @@
         <span class="sr-only">Toggle navigation</span>
       </a>
       <!-- Navbar Right Menu -->
-      
+
     </nav>
   </header>
   <!-- Left side column. contains the logo and sidebar -->
@@ -67,8 +67,9 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">HEADER</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
-        <li><a href="{{url('produit')}}"><i class="fa fa-link"></i> <span>Gerer Produits</span></a></li>
+        <li class="active"><a href="{{url('clients')}}"><i class="fa fa-link"></i> <span>Gestion Clients</span></a></li>
+        <li class="active"><a href="{{url('produit')}}"><i class="fa fa-link"></i> <span>Gestion Produis</span></a></li>
+        <!--<li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>-->
       </ul>
       <!-- /.sidebar-menu -->
     </section>
@@ -77,13 +78,12 @@
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
 
 
     <!-- Main content -->
     <section class="content container-fluid">
 
-      @yield('content');
+       @yield('content')
 
     </section>
     <!-- /.content -->
@@ -101,31 +101,41 @@
   </footer>
 
   <!-- Control Sidebar -->
- 
+
 </div>
 <script src="{{asset('js/app.js')}}"></script>
+
 <script>
-   $('#editanasModal').on('show.bs.modal', function (event) {
-      var button = $(event.relatedTarget) 
-      var libelle = button.data('ptitle') 
-      var description = button.data('pdesc') 
-      var quant = button.data('pqu') 
-      var prod_id = button.data('pid') 
-      var modal = $(this)
-      modal.find('.modal-body #prolib').val(libelle);
-      modal.find('.modal-body #prodisc').val(description);
-      modal.find('.modal-body #proqu').val(quant);
-      modal.find('.modal-body #prid').val(prod_id);
+     $('#edit').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget)
+  var nom = button.data('nom')
+  var prenom = button.data('prenom')
+  var telephone = button.data('tele')
+  var type = button.data('type')
+  var id = button.data('client_id')
+  var modal = $(this)
+
+
+
+
+  modal.find('.modal-body #nom_client').val(nom)
+  modal.find('.modal-body #prenom_client').val(prenom)
+  modal.find('.modal-body #telephone').val("0"+telephone)
+  modal.find('.modal-body #type').val(type)
+  modal.find('.modal-body #client_id').val(id)
 })
 
-$('#deleteanasModal').on('show.bs.modal', function (event) {
-      var button = $(event.relatedTarget) 
-    
-      var prod_id = button.data('pid') 
-      var modal = $(this)
-     
-      modal.find('.modal-body #prid').val(prod_id);
+$('#delete').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget)
+
+  var id = button.data('client_id')
+  var modal = $(this)
+
+
+
+  modal.find('.modal-body #client_id').val(id)
 })
+
 </script>
 </body>
 </html>
