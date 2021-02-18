@@ -68,7 +68,7 @@
         <li class="header">HEADER</li>
         <!-- Optionally, you can add icons to the links -->
         <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
-        <!--<li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>-->
+        <li><a href="{{url('produit')}}"><i class="fa fa-link"></i> <span>Gerer Produits</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>
@@ -78,23 +78,12 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Page Header
-        <small>Optional description</small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-        <li class="active">Here</li>
-      </ol>
-    </section>
+
 
     <!-- Main content -->
     <section class="content container-fluid">
 
-      <!--------------------------
-        | Your Page Content Here |
-        -------------------------->
+      @yield('content');
 
     </section>
     <!-- /.content -->
@@ -115,5 +104,28 @@
  
 </div>
 <script src="{{asset('js/app.js')}}"></script>
+<script>
+   $('#editanasModal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget) 
+      var libelle = button.data('ptitle') 
+      var description = button.data('pdesc') 
+      var quant = button.data('pqu') 
+      var prod_id = button.data('pid') 
+      var modal = $(this)
+      modal.find('.modal-body #prolib').val(libelle);
+      modal.find('.modal-body #prodisc').val(description);
+      modal.find('.modal-body #proqu').val(quant);
+      modal.find('.modal-body #prid').val(prod_id);
+})
+
+$('#deleteanasModal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget) 
+    
+      var prod_id = button.data('pid') 
+      var modal = $(this)
+     
+      modal.find('.modal-body #prid').val(prod_id);
+})
+</script>
 </body>
 </html>
